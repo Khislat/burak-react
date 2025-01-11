@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
@@ -8,20 +8,22 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './app/MaterialTheme';
 import './css/index.css';
+import { BrowserRouter as Router} from "react-router-dom";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const container = document.getElementById("root")!;
+const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
-      
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <App />
+        </Router>
+      </ThemeProvider>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
 
