@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 
 export function HomeNavbar() {
     const authMember = null;
-    return <div className="home-navbar">
+    return ( 
+    <div className="home-navbar">
             <Container className="navbar-container">
                 <Stack className="menu ">
                     <Box>
@@ -59,5 +60,6 @@ export function HomeNavbar() {
                 </Stack>
             </Container>    
         </div>
+    );
     
 }
