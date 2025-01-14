@@ -73,3 +73,77 @@
 .home-navbar .div.hover-line::after {
     transform-origin: 0% 50%;
 }
+
+.home-navbar .navbar-container .header-freame {
+    margin-top: 142px;
+    height: 462px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home-navbar .navbar-container .header-freame .detail {
+    width: 510px;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-navbar .navbar-container .header-freame .detail .head-main-text {
+    width: 450px;
+    height: 150px;
+    font-family: Roboto Serif;
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 59px;
+    letter-spacing: -1.5%;
+    text-align: left;
+    color: rgb(248, 248, 255);
+}
+
+
+.home-navbar .navbar-container .header-freame .detail .wel-txt {
+    width: 510px;
+    height: 42px;
+    font-family: Roboto Serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 42px;
+    letter-spacing: -1.5%;
+    text-align: left;
+    color: rgb(215, 182, 134);
+}
+
+.home-navbar .navbar-container .header-freame .detail .signup {
+  margin-top: 73px;
+}
+
+.home-navbar .navbar-container .header-freame .detail .signup-button {
+    width: 210px;
+    height: 60px;
+    border-radius: 4px;
+    background: rgb(25, 118, 210);
+    font-family: Poppins;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0%;
+    text-align: center;
+    color: rgb(248, 248, 255);
+}
+
+.home-navbar .navbar-container .logo-frame {
+    margin-top: 43px;
+    width: 690px;
+    height: 419px;
+    
+}
+
+.home-navbar .navbar-container .logo-img {
+    width: 100%;
+    height: 100%;
+    background: url("/public/img/logo.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert(28%);
+}
+
