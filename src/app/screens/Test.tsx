@@ -20,7 +20,10 @@ class Test extends Component {
 			year: 2025,
 		});
 	};
-
+	
+	/** 
+	 * 1.Hooklar nima - Bu functional componentida suniy statelarni yaratish
+	 * 2.Lifecycle methodi nima?   */
 	componentDidMount() {
 		console.log("componentDidMount")
 		// runs after first runs => RETRIVE FROM BACKEND SERVER
