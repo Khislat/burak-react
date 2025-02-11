@@ -6,14 +6,20 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import AspectRatio from "@mui/joy/AspectRatio";
 import { Height } from "@mui/icons-material";
 
-const activeUsers = [
-	{ productName: "Martin", memberImage: "/img/martin.webp" },
-	{ productName: "Justin", memberImage: "/img/justin.webp" },
-	{ productName: "Rose", memberImage: "/img/rose.webp" },
-	{ productName: "Nusret", memberImage: "/img/nusret.webp" },
-];
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retriveTopUsers } from "./selector";
+import { serverApi } from "../../../lib/config";
+import { Member } from "../../../lib/types/member";
+
+/** REDUX SLICE & SELECTOR **/
+
+const topUsersRetriver = createSelector(retriveTopUsers, (topUsers) => ({
+	topUsers,
+}));
 
 export default function ActiveUsers() {
+	const { topUsers } = useSelector(topUsersRetriver);
 	return (
 		<div className={"active-users-frame"}>
 			<Container>
@@ -21,23 +27,24 @@ export default function ActiveUsers() {
 					<Box className={"category-title"}>Active Users</Box>
 					<Stack className={"cards-frame"}>
 						<CssVarsProvider>
-							{activeUsers.length !== 0 ? (
-								activeUsers.map((user, index) => (
-									<Card key={index} variant="outlined" className="card">
-										<CardOverflow>
-											<AspectRatio ratio="1">
-												<img
-													src={user.memberImage}
-													alt={user.productName}
-													style={{ height: "100%" }}
-												/>
-											</AspectRatio>
-										</CardOverflow>
-										<CardOverflow>
-											<Box className="member-nickname">{user.productName}</Box>
-										</CardOverflow>
-									</Card>
-								))
+							{topUsers.length !== 0 ? (
+								topUsers.map((member: Member) => {
+									const imagePath = `${serverApi}/${member.memberImage}`;
+									return (
+										<Card key={member._id} variant="outlined" className="card">
+											<CardOverflow>
+												<AspectRatio ratio="1">
+													<img src={imagePath} alt="" />
+												</AspectRatio>
+											</CardOverflow>
+											<CardOverflow>
+												<Typography className={"member-nickname"}>
+													{member.memberNick}
+												</Typography>
+											</CardOverflow>
+										</Card>
+									);
+								})
 							) : (
 								<Box className="no-data">No Active Users!</Box>
 							)}
