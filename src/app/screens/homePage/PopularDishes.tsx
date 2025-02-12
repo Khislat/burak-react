@@ -17,7 +17,7 @@ import { serverApi } from "../../../lib/config";
 
 /** REDUX SLICE & SELECTOR **/
 
-const popularDishesRetriver = createSelector(
+const popularDishesRetriever = createSelector(
 	retrivePopularDishes,
 	(popularDishes) => ({
 		popularDishes,
@@ -25,7 +25,7 @@ const popularDishesRetriver = createSelector(
 );
 
 export default function PopularDishes() {
-	const { popularDishes } = useSelector(popularDishesRetriver);
+	const { popularDishes } = useSelector(popularDishesRetriever);
 
 	return (
 		<div className={"popular-dishes-frame"}>

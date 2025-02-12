@@ -14,12 +14,12 @@ import { Member } from "../../../lib/types/member";
 
 /** REDUX SLICE & SELECTOR **/
 
-const topUsersRetriver = createSelector(retriveTopUsers, (topUsers) => ({
+const topUsersRetriever = createSelector(retriveTopUsers, (topUsers) => ({
 	topUsers,
 }));
 
 export default function ActiveUsers() {
-	const { topUsers } = useSelector(topUsersRetriver);
+	const { topUsers } = useSelector(topUsersRetriever);
 	return (
 		<div className={"active-users-frame"}>
 			<Container>

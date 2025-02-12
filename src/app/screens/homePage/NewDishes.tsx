@@ -17,13 +17,13 @@ import { serverApi } from "../../../lib/config";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 
 /** REDUX SLICE & SELECTOR **/
-
-const newDishesRetriver = createSelector(retriveNewDishes, (newDishes) => ({
+// Yaratilgan malumotnio qabul qilish mexanizmi
+const newDishesRetriever = createSelector(retriveNewDishes, (newDishes) => ({
 	newDishes,
 }));
 
 export default function NewDishes() {
-	const { newDishes } = useSelector(newDishesRetriver);
+	const { newDishes } = useSelector(newDishesRetriever);
 
 	console.log("newDishes", newDishes);
 	return (

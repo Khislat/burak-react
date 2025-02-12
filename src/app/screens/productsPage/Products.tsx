@@ -9,14 +9,30 @@ import PaginationItem from "@mui/material/PaginationItem";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setProducts } from "./slice";
+import { createSelector } from "reselect";
+import { retriveProducts } from "./selector";
+import { Product } from "../../../lib/types/product";
+
+/** REDUX SLICE & SELECTOR **/
+const actionDispatch = (dispatch: Dispatch) => ({
+	setProducts: (data: Product[]) => dispatch(setProducts(data)), // setProducts commandani xosil qildik
+});
+
+const productsRetriever = createSelector(retriveProducts, (products) => ({
+	products,
+}));
+
 const products = [
-	{ productName: "Cutlet", imagePath: "/img/cutlet.webp" },
-	{ productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
 	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
-	{ productName: "Lavash", imagePath: "/img/lavash.webp" },
-	{ productName: "Lavash", imagePath: "/img/lavash.webp" },
-	{ productName: "Cutlet", imagePath: "/img/cutlet.webp" },
-	{ productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
+	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
+	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
+	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
+	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
+	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
+	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
 	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
 ];
 
@@ -24,9 +40,7 @@ export default function Products() {
 	return (
 		<div className={"products"}>
 			<Container>
-				<Stack
-					flexDirection={"column"}
-					alignItems={"center"}>
+				<Stack flexDirection={"column"} alignItems={"center"}>
 					<Stack className={"avatar-big-box"}>
 						<Stack className="big-box-container">
 							<Box className="top-text">Burak Restaurant</Box>

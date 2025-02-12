@@ -18,12 +18,13 @@ import "../../../css/home.css";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
-	setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
+	setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),// setPopularDishes commandani xosil qildik
 	setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
 	setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
 
 export default function HomePage() {
+	// Bu yerda yaratilgan komandani functional componentiga qabul qiladigan mantiqni  ichida ishlatadigan mantiqni yaratib oldik
 	const { setPopularDishes, setNewDishes, setTopUsers } = actionDispatch(
 		useDispatch()
 	);
