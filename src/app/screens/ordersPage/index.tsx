@@ -7,10 +7,26 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
+
+import { Order } from "../../../lib/types/order";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
 import "../../../css/order.css";
 
+/** REDUX SLICE & SELECTOR **/
+const actionDispatch = (dispatch: Dispatch) => ({
+	setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)), // setPopularDishes commandani xosil qildik
+	setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+	setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+});
+
 export default function OrdersPage() {
+	const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+		actionDispatch(useDispatch());
 	const [value, setValue] = useState("1");
+
+	/** HANDLEARS **/
 
 	const handleChange = (e: SyntheticEvent, newValue: string) => {
 		setValue(newValue);
@@ -77,7 +93,7 @@ export default function OrdersPage() {
 									className="card-input-full"
 								/>
 								<div className="card-half">
-                                <input
+									<input
 										type="text"
 										name="cardPeriod"
 										placeholder="07 / 24"
@@ -89,9 +105,7 @@ export default function OrdersPage() {
 										placeholder="CVV : 010"
 										className="card-input-half"
 									/>
-                                </div>
-									
-								
+								</div>
 
 								<input
 									type="text"
