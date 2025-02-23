@@ -14,6 +14,8 @@ import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../hooks/useGlobals";
 import "../../../css/order.css";
+import { useHistory } from "react-router-dom";
+import { serverApi } from "../../../lib/config";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -25,7 +27,8 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export default function OrdersPage() {
 	const { setPausedOrders, setProcessOrders, setFinishedOrders } =
 		actionDispatch(useDispatch());
-	const { orderBuilder } = useGlobals();
+	const { orderBuilder, authMember } = useGlobals();
+	const history = useHistory();
 	const [value, setValue] = useState("1");
 	const [orderInquery, serOrderInquery] = useState<OrderInquiry>({
 		page: 1,
@@ -57,6 +60,8 @@ export default function OrdersPage() {
 	const handleChange = (e: SyntheticEvent, newValue: string) => {
 		setValue(newValue);
 	};
+
+	if (!authMember) history.push("/");
 	return (
 		<div className="order-page">
 			<Container className="order-container">
@@ -88,7 +93,9 @@ export default function OrdersPage() {
 						<Box className="member-box">
 							<div className="order-user-img">
 								<img
-									src={"/icons/default-user.svg"}
+									src={	authMember?.memberImage
+										? `${serverApi}/${authMember.memberImage}`
+										: "/icons/default-user.svg"}
 									className="order-user-avatar"
 								/>
 								<div className="order-user-icon-box">
@@ -98,15 +105,17 @@ export default function OrdersPage() {
 									/>
 								</div>
 							</div>
-							<span className="order-user-name">Martin</span>
-							<span className="order-user-prof">USER</span>
+							<span className="order-user-name">{authMember?.memberNick}</span>
+							<span className="order-user-prof">{authMember?.memberType}</span>
 						</Box>
 						<Box className="liner"></Box>
 						<Box className="order-user-address">
 							<div className="address-loc-icon">
 								<img src={"/icons/location.svg"} />
 							</div>
-							<div className="user-address-txt">South Korea, Degu</div>
+							<div className="user-address-txt">{authMember?.memberAddress
+										? authMember.memberAddress
+										: "Do not exist"}</div>
 						</Box>
 					</Box>
 					<Box className="order-payment-box">
