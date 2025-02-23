@@ -1,26 +1,27 @@
 import React from "react";
-
 import TabPanel from "@mui/lab/TabPanel";
 import { Box, Button, Stack } from "@mui/material";
-
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrivePausedOrders } from "./selector";
+import { retrievePausedOrders } from "./selector";
 import { Product } from "../../../lib/types/product";
 import { serverApi } from "../../../lib/config";
 import { Order, OrderItem } from "../../../lib/types/order";
 
 /** REDUX SLICE & SELECTOR **/
 
-const pausedOrdersRetrever = createSelector(
-	retrivePausedOrders,
+const pausedOrdersRetriever = createSelector(
+	retrievePausedOrders,
 	(pausedOrders) => ({
 		pausedOrders,
 	})
 );
 
 export default function PausedOrders() {
-	const { pausedOrders } = useSelector(pausedOrdersRetrever);
+	const { pausedOrders } = useSelector(pausedOrdersRetriever);
+
+
+	/** HANDLEARS **/
 	return (
 		<TabPanel value={"1"}>
 			<Stack>
