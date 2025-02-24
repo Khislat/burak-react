@@ -64,6 +64,7 @@ export function Settings() {
 			const member = new MemberService();
 			const result = await member.updateMember(memberUpdateInput);
 			setAuthMember(result);
+			
 
 			await sweetTopSmallSuccessAlert("Modify successfuly!", 700);
 		} catch (err) {
@@ -75,7 +76,7 @@ export function Settings() {
 	const handleImageViewer = (e: T) => {
 		const file = e.target.files[0];
 		console.log("file:", file);
-		const fileType = file.path,
+		const fileType = file.type,
 			validateImageTypes = ["image/jpg", "image/jpeg", "image/png"];
 		if (!validateImageTypes.includes(fileType)) {
 			sweetErrorHandling(Messages.error5).then();

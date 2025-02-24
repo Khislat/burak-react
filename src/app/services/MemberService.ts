@@ -106,8 +106,8 @@ class MemberService {
 			console.log("updateMember:", result);
 
 			const member: Member = result.data;
-			return member;
 			localStorage.setItem("memberData", JSON.stringify(member));
+			return member;
 		} catch (err) {
 			console.log("Error, updateMember:", err);
 			throw err;
